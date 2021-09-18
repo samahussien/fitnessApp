@@ -8,6 +8,7 @@ import 'package:sqflite/sqflite.dart';
 class AppCubit extends Cubit<AppStates> {
   var database;
   List<Map> users = [];
+  bool loadStatus=false;
 
   List<WeightData> ChartData = [];
   List<WeightData> getChartData() {
@@ -63,7 +64,9 @@ class AppCubit extends Cubit<AppStates> {
     }).then((value) {
       database = value;
       emit(AppCreateDatabaseStates());
-    });
+      loadStatus=true;
+
+        });
   }
 
   void insertDataBase() {
